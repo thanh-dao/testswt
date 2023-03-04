@@ -15,27 +15,7 @@ jobs:
                   node-version: 16
             - run: npm ci
             - run: npm test
-            - name: ssh-scp-ssh-pipelines
-              # You may pin to the exact commit or the version.
-              # uses: cross-the-world/ssh-scp-ssh-pipelines@78e864b4890087a58248ff39320406971ca88b89
-              uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
-              env : 
-                host_ip:  ${{ secrets.HOST_IP }}
-                port:  ${{ secrets.PORT }}
-                user:  ${{ secrets.USER }}
-                password:  ${{ secrets.PASSWORD }}
-              with:
-                # ssh remote host
-                host: ${{ secrets.HOST_IP }}
-                # ssh remote port
-                port: ${{ secrets.PORT }}
-                # ssh remote user
-                user: ${{ secrets.USER }}
-                # content of ssh private key. ex raw content of ~/.ssh/id_rsa
-                
-                pass: ${{ secrets.PASSWORD }}
-                scp: |
-                  echo 123
+            - run: ssh thanh@27.64.30.83 -p 6767
 
                 
 
