@@ -15,7 +15,7 @@ jobs:
                   node-version: 16
             - run: npm ci
             - run: npm test
-            - run: ssh thanh@27.64.30.83 -p 6767
+            - run: ssh thanh@27.64.30.83 -p 6767 -T
 
                 
 
