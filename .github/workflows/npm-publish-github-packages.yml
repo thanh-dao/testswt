@@ -34,7 +34,7 @@ jobs:
                 # content of ssh private key. ex raw content of ~/.ssh/id_rsa
                 
                 pass: ${{ secrets.PASSWORD }}
-                script: |
+                scp: |
                   echo 123
 
                 
