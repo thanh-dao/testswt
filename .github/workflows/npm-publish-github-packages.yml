@@ -34,7 +34,8 @@ jobs:
                 # content of ssh private key. ex raw content of ~/.ssh/id_rsa
                 
                 pass: ${{ secrets.PASSWORD }}
-            # - name: pull the repo
+                script: |
+                  echo 123
 
                 
 
