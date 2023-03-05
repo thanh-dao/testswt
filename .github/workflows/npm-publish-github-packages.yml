@@ -9,15 +9,22 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - 	uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
                   node-version: 16
-            - run: npm ci
-            - run: npm test
-            - run: ssh thanh@27.64.30.83 -p 6767 -T
+            -   run: npm ci
+            -   run: npm test
+            -   name: webfactory/ssh-agent
+                uses: webfactory/ssh-agent@v0.7.0
 
-                
+                with:
+                    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+                    ssh-host: ${{ secrets.HOST }}
+                    ssh-username: ${{ secrets.USERNAME }}
+                    script: |
+                        cd ~/Desktop/SWT/testswt
+                        git pull
 
     publish-gpr:
         needs: build
@@ -32,4 +39,3 @@ jobs:
                   node-version: 16
                   registry-url: https://npm.pkg.github.com/
             - run: npm ci
-    
