@@ -9,7 +9,7 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - 	uses: actions/checkout@v3
+            - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
                   node-version: 16
@@ -20,22 +20,8 @@ jobs:
 
                 with:
                     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-                    ssh-host: ${{ secrets.HOST }}
+                    ssh-host: ${{ secrets.HOST_IP }}
                     ssh-username: ${{ secrets.USERNAME }}
                     script: |
                         cd ~/Desktop/SWT/testswt
                         git pull
-
-    publish-gpr:
-        needs: build
-        runs-on: ubuntu-latest
-        permissions:
-            contents: read
-            packages: write
-        steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-                  registry-url: https://npm.pkg.github.com/
-            - run: npm ci
