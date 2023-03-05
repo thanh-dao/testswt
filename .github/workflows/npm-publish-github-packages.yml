@@ -3,25 +3,28 @@
 
 name: Node.js Package
 
-on: push
+on:
+  push
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: 16
-            -   run: npm ci
-            -   run: npm test
-            -   name: webfactory/ssh-agent
-                uses: webfactory/ssh-agent@v0.5.0
-
-                with:
-                    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-                    ssh-host: ${{ secrets.HOST_IP }}
-                    ssh-username: ${{ secrets.USERNAME }}
-                    script: |
-                        cd ~/Desktop/SWT/testswt
-                        git pull
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm test
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.HOST_IP }}
+          REMOTE_USER: ${{ secrets.USER }}
+          EXCLUDE: "/dist/, /node_modules/"
+          REMOTE_PORT: ${{ secrets.PORT }}
+          SCRIPT_BEFORE: |
+                cd ~/Desktop/SWT/testswt
+                git pull
