@@ -19,4 +19,4 @@ jobs:
       - name: install python dependency
         run: pip install -r requirements.txt
       - name: Deploy to Server
-        run : python ssh.py
+        run : python ssh.py  ${{ secrets.HOST_IP }} ${{ secrets.USER }} ${{ secrets.PASSWORD }} ${{ secrets.PORT }}

@@ -1,23 +1,30 @@
 import paramiko
-host = '27.64.30.83'
-username = 'thanh'
-password = '1509'
-port=6767
-# create an SSH client object
-ssh = paramiko.SSHClient()
+import sys, getopt
+host = ''
+username = ''
+password = ''
+port= 22
 
-# automatically add the server's host key
-ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+def get_passed_arguments() :
+    argv = sys.argv [ 1: ] 
+    global host, username, password, port
+    host = argv[0]
+    username = argv[1]
+    password = argv[2]
+    port = int(argv[3])
 
-# connect to the server
-ssh.connect(host, username='thanh'
-, password=password, port=port)
+def execute_commands(command) : 
+    ssh = paramiko.SSHClient()
 
-# execute a command
-ssh.exec_command('cd ~/Desktop/SWT/testswt ls')
-stdin, stdout, stderr = ssh.exec_command('cd ~/Desktop/SWT/testswt\ngit pull')
-# read the output
-output = stdout.read().decode('utf-8')
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-# print the output
-print(output)
+    ssh.connect(host, username=username, password=password, port=port)
+
+    stdin, stdout, stderr = ssh.exec_command(command)
+
+    output = stdout.read().decode('utf-8')
+
+    print(output)
+
+get_passed_arguments()
+execute_commands('cd ~/Desktop/SWT/testswt\ngit pull')
