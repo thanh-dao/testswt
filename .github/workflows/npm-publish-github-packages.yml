@@ -17,14 +17,4 @@ jobs:
       - run: npm ci
       - run: npm test
       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.HOST_IP }}
-          REMOTE_USER: ${{ secrets.USER }}
-          EXCLUDE: "/dist/, /node_modules/"
-          REMOTE_PORT: ${{ secrets.PORT }}
-          SCRIPT_BEFORE: |
-                cd ~/Desktop/SWT/testswt
-                git pull
+        run : python ssh.py

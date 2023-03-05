@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.4.3"
+  },
+  "dependencies": {
+    "node-ssh": "^13.0.1"
   }
 }
