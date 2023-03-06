@@ -4,9 +4,8 @@
 name: Node.js Package
 
 on:
-  push:
-    branches:
-      - main # update with your preferred branch name
+  push
+ 
 
 jobs:
   build:
@@ -18,16 +17,16 @@ jobs:
           node-version: 19
       - run: npm ci
       - run: npm test
-      
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
       - name: Install Python dependency
         run: |
           sudo apt-get update && sudo apt-get install python3-pip -y
           pip install -r requirements.txt
       - name: Deploy to Server
         run: python ssh.py ${{ secrets.HOST_IP }} ${{ secrets.USER }} ${{ secrets.PASSWORD }} ${{ secrets.PORT }}
+  
+  
