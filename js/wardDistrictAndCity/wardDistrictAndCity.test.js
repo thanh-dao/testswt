@@ -19,7 +19,7 @@
 //             })
 //     });
 // })
-require('dotenv').config();
+// require('dotenv').config()
 // describe('$wardName in $city is $expectValue', ({ wardName, city, expectValue }) => {
 test.each([
     { wardName: "Long Thạnh Mỹ", cityName: "Hồ Chí Minh" },
