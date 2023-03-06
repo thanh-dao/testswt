@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 19
         env: 
-          HOST: ${{ secrets.API_HOST_IP }}
+          API_HOST_IP: ${{ secrets.API_HOST_IP }}
       - run: npm ci
       - run: npm test
   deploy:
