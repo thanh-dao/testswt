@@ -28,7 +28,8 @@ test.each([
     { wardName: "Hiệp Hòa", cityName: "Quảng Nam" },
     { wardName: "Vĩnh Phúc", cityName: "Hà Nội" },
 ])("$wardName in $city", ({ wardName, cityName }) => {
-    console.log(process.env.API_HOST_IP)
+    console.log(123);
+    console.log(process.argv)
     return fetch(
         process.env.API_HOST_IP + "/EcommercePlatformm/MainController?btnAction=address&addressAction=getCityByWardName&wardName=" +
             wardName
