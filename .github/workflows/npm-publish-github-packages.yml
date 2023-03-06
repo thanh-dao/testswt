@@ -24,6 +24,7 @@ jobs:
           pip install -r requirements.txt
   deploy:
     needs: build
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy to Server
         run: python ssh.py ${{ secrets.HOST_IP }} ${{ secrets.USER }} ${{ secrets.PASSWORD }} ${{ secrets.PORT }}
