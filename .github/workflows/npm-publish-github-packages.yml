@@ -5,8 +5,8 @@ name: Node.js Package
 
 on:
   push
- 
-
+env: 
+  API_HOST_IP: ${{ secrets.API_HOST_IP }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,8 +15,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-        env: 
-          API_HOST_IP: ${{ secrets.API_HOST_IP }}
       - run: echo "$API_HOST_IP"
       - run: npm ci
       - run: npm test
