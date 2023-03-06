@@ -17,7 +17,7 @@ jobs:
           node-version: 19
         env: 
           API_HOST_IP: ${{ secrets.API_HOST_IP }}
-      - run: echo ${{ secrets.API_HOST_IP }}
+      - run: echo $API_HOST_IP
       - run: npm ci
       - run: npm test
       
