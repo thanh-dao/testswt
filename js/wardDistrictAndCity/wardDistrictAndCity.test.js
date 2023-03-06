@@ -22,12 +22,13 @@
 require('dotenv').config();
 // describe('$wardName in $city is $expectValue', ({ wardName, city, expectValue }) => {
 test.each([
-    { wardName: "Long Thạnh Mỹ", city: "Hồ Chí Minh" },
-    { wardName: "Hiệp Hòa", city: "Đồng Nai" },
-    { wardName: "Hiệp Hòa", city: "Hồ Chí Minh" },
-    { wardName: "Hiệp Hòa", city: "Quảng Nam" },
-    { wardName: "Vĩnh Phúc", city: "Hà Nội" },
+    { wardName: "Long Thạnh Mỹ", cityName: "Hồ Chí Minh" },
+    { wardName: "Hiệp Hòa", cityName: "Đồng Nai" },
+    { wardName: "Hiệp Hòa", cityName: "Hồ Chí Minh" },
+    { wardName: "Hiệp Hòa", cityName: "Quảng Nam" },
+    { wardName: "Vĩnh Phúc", cityName: "Hà Nội" },
 ])("$wardName in $city", ({ wardName, cityName }) => {
+    console.log(process.env.API_HOST_IP)
     return fetch(
         process.env.API_HOST_IP + "/EcommercePlatformm/MainController?btnAction=address&addressAction=getCityByWardName&wardName=" +
             wardName
