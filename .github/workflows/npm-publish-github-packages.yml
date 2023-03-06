@@ -24,7 +24,6 @@ jobs:
           pip install -r requirements.txt
   deploy:
     needs: build
-    description: Deploy to server
     steps:
       - name: Deploy to Server
         run: python ssh.py ${{ secrets.HOST_IP }} ${{ secrets.USER }} ${{ secrets.PASSWORD }} ${{ secrets.PORT }}
